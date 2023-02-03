@@ -1,0 +1,17 @@
+{
+  "name": "task3",
+  "l": ["1","2","3","4","5","6","7"],
+  "sigma": ["task3_start", "runnable6_start","runnable6_finish","runnable5_start","runnable5_finish",
+    "runnable7_start","runnable7_finish"],
+  "tran": {
+    "0": ["1", "task2_start","2"],
+    "1": ["2", "runnable6_start", "3"],
+    "2": ["3", "runnable6_finish", "4"],
+    "3": ["4", "runnable5_start", "5"],
+    "4": ["5", "runnable5_finish", "6"],
+    "5": ["6", "runnable7_start", "7"],
+    "6": ["7", "runnable7_finish", "1"]
+  },
+  "init": "1",
+  "accept": ["1","2","3","4","5","6","7"]
+}

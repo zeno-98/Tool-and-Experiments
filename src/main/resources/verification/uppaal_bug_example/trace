@@ -1,0 +1,131 @@
+verifyta -S0 nta.xml nta.q
+
+Result(satisfy=false, content=Options for the verification:
+  Generating shortest trace
+  Search order is breadth first
+  Using no space optimisation
+  Seed is 1651200210
+  State space representation uses minimal constraint systems
+[2K
+Verifying formula 1 at .\src\main\resources\verification\nta.q:1
+[2K -- Formula is NOT satisfied.
+
+State:
+( runnable1.s1 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s1 assume.assume2 )
+runnable1.x=0 runnable2.x=0 runnable3.x=0 runnable4.x=0 schedule2.x=0 schedule1.x=0 assume.x=0 buffer2.count=0 buffer2.len=30 #depth=0
+
+Delay: 1
+
+State:
+( runnable1.s1 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s1 assume.assume2 )
+runnable1.x=1 runnable2.x=1 runnable3.x=1 runnable4.x=1 schedule2.x=1 schedule1.x=1 assume.x=1 buffer2.count=0 buffer2.len=30 #depth=0
+
+Transitions:
+  schedule1.s1->schedule1.s2 { x == 1, runnable1_start!, x := 0 }
+  runnable1.s1->runnable1.s2 { 1, runnable1_start?, x := 0 }
+
+State:
+( runnable1.s2 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=0 runnable2.x=1 runnable3.x=1 runnable4.x=1 schedule2.x=1 schedule1.x=0 assume.x=1 buffer2.count=0 buffer2.len=30 #depth=1
+
+Transitions:
+  runnable1.s2->runnable1.s6 { x <= 4, write1!, 1 }
+  assume.assume2->assume.assume2 { x >= 1, write1?, 1 }
+
+State:
+( runnable1.s6 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=0 runnable2.x=1 runnable3.x=1 runnable4.x=1 schedule2.x=1 schedule1.x=0 assume.x=1 buffer2.count=0 buffer2.len=30 #depth=2
+
+Delay: 2
+
+State:
+( runnable1.s6 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=2 runnable2.x=3 runnable3.x=3 runnable4.x=3 schedule2.x=3 schedule1.x=2 assume.x=3 buffer2.count=0 buffer2.len=30 #depth=2
+
+Transitions:
+  assume.assume2->assume.assume3 { x >= 1 && x < 14, write1_complete!, 1 }
+  runnable1.s6->runnable1.s4 { x <= 4, write1_complete?, 1 }
+
+State:
+( runnable1.s4 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=2 runnable2.x=3 runnable3.x=3 runnable4.x=3 schedule2.x=3 schedule1.x=2 assume.x=3 buffer2.count=0 buffer2.len=30 #depth=3
+
+Transitions:
+  runnable1.s4->runnable1.s1 { x >= 2, tau, 1 }
+
+State:
+( runnable1.s1 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=2 runnable2.x=3 runnable3.x=3 runnable4.x=3 schedule2.x=3 schedule1.x=2 assume.x=3 buffer2.count=0 buffer2.len=30 #depth=4
+
+Delay: 8
+
+State:
+( runnable1.s1 runnable2.s1 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=10 runnable2.x=11 runnable3.x=11 runnable4.x=11 schedule2.x=11 schedule1.x=10 assume.x=11 buffer2.count=0 buffer2.len=30 #depth=4
+
+Transitions:
+  schedule1.s2->schedule1.s1 { x == 10, runnable2_start!, x := 0 }
+  runnable2.s1->runnable2.s2 { 1, runnable2_start?, x := 0 }
+
+State:
+( runnable1.s1 runnable2.s2 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s1 assume.assume3 )
+runnable1.x=10 runnable2.x=0 runnable3.x=11 runnable4.x=11 schedule2.x=11 schedule1.x=0 assume.x=11 buffer2.count=0 buffer2.len=30 #depth=5
+
+Delay: 1
+
+State:
+( runnable1.s1 runnable2.s2 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s1 assume.assume3 )
+runnable1.x=11 runnable2.x=1 runnable3.x=12 runnable4.x=12 schedule2.x=12 schedule1.x=1 assume.x=12 buffer2.count=0 buffer2.len=30 #depth=5
+
+Transitions:
+  schedule1.s1->schedule1.s2 { x == 1, runnable1_start!, x := 0 }
+  runnable1.s1->runnable1.s2 { 1, runnable1_start?, x := 0 }
+
+State:
+( runnable1.s2 runnable2.s2 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=0 runnable2.x=1 runnable3.x=12 runnable4.x=12 schedule2.x=12 schedule1.x=0 assume.x=12 buffer2.count=0 buffer2.len=30 #depth=6
+
+Delay: 1
+
+State:
+( runnable1.s2 runnable2.s2 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=1 runnable2.x=2 runnable3.x=13 runnable4.x=13 schedule2.x=13 schedule1.x=1 assume.x=13 buffer2.count=0 buffer2.len=30 #depth=6
+
+Transitions:
+  runnable2.s2->runnable2.s4 { x <= 4, read1!, 1 }
+  assume.assume3->assume.assume2 { x >= 12, read1?, 1 }
+
+State:
+( runnable1.s2 runnable2.s4 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=1 runnable2.x=2 runnable3.x=13 runnable4.x=13 schedule2.x=13 schedule1.x=1 assume.x=13 buffer2.count=0 buffer2.len=30 #depth=7
+
+Transitions:
+  runnable1.s2->runnable1.s6 { x <= 4, write1!, 1 }
+  assume.assume2->assume.assume2 { x >= 1, write1?, 1 }
+
+State:
+( runnable1.s6 runnable2.s4 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=1 runnable2.x=2 runnable3.x=13 runnable4.x=13 schedule2.x=13 schedule1.x=1 assume.x=13 buffer2.count=0 buffer2.len=30 #depth=8
+
+Delay: 1
+
+State:
+( runnable1.s6 runnable2.s4 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume2 )
+runnable1.x=2 runnable2.x=3 runnable3.x=14 runnable4.x=14 schedule2.x=14 schedule1.x=2 assume.x=14 buffer2.count=0 buffer2.len=30 #depth=8
+
+Transitions:
+  assume.assume2->assume.assume3 { x >= 1 && x < 14, write1_complete!, 1 }
+  runnable1.s6->runnable1.s4 { x <= 4, write1_complete?, 1 }
+
+State:
+( runnable1.s4 runnable2.s4 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assume3 )
+runnable1.x=2 runnable2.x=3 runnable3.x=14 runnable4.x=14 schedule2.x=14 schedule1.x=2 assume.x=14 buffer2.count=0 buffer2.len=30 #depth=9
+
+Transitions:
+  assume.assume3->assume.assumesink { x >= 0, read1_complete!, x := 0 }
+  runnable2.s4->runnable2.s3 { x <= 4, read1_complete?, 1 }
+
+State:
+( runnable1.s4 runnable2.s3 runnable3.s1 runnable4.s1 buffer2.s1 schedule2.s1 schedule1.s2 assume.assumesink )
+runnable1.x=2 runnable2.x=3 runnable3.x=14 runnable4.x=14 schedule2.x=14 schedule1.x=2 assume.x=0 buffer2.count=0 buffer2.len=30 #depth=10
+, logicTimeWord=(write1,1.0)(write1_complete,3.0)(read1,13.0)(write1,13.0)(write1_complete,14.0)(read1_complete,14.0), delayTime=0)

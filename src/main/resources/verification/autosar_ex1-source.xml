@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd">
+
+<nta>
+  <declaration>chan read1,write1;
+chan runnable1_start;
+chan runnable2_start;
+chan runnable3_start;
+chan trigger0,trigger1;
+</declaration>  <template>    <name>runnable1</name>
+    <declaration>clock x;
+int write1_count;
+</declaration>    <location id="runnable1_runnable1passive">      <name>passive</name>
+    </location>
+    <location id="runnable1_runnable1active">
+      <name>active</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1write">
+      <name>write</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1active1">
+      <name>active1</name>
+      <label kind="invariant">x&lt;=4&amp;&amp;x&gt;=2</label>
+    </location>
+    <init ref="runnable1_runnable1passive"/>
+    <transition>
+      <source ref="runnable1_runnable1passive"/>
+      <target ref="runnable1_runnable1active"/>
+      <label kind="synchronisation">runnable1_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1active"/>
+      <target ref="runnable1_runnable1write"/>
+      <label kind="synchronisation">write1!</label>
+      <label kind="guard">write1_count&lt;=2</label>
+      <label kind="assignment">write1_count++</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1write"/>
+      <target ref="runnable1_runnable1active"/>
+      <label kind="synchronisation">runnable2_start!</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1active"/>
+      <target ref="runnable1_runnable1active1"/>
+      <label kind="synchronisation">trigger1!</label>
+      <label kind="guard">write1_count&gt;=2</label>
+      <label kind="assignment">write1_count=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1active1"/>
+      <target ref="runnable1_runnable1passive"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+  </template>
+  <template>
+    <name>runnable2</name>
+    <declaration>clock x;
+int read1_count;
+int write1_count;
+</declaration>    <location id="runnable2_runnable2passive">      <name>passive</name>
+    </location>
+    <location id="runnable2_runnable2implic_R">
+      <name>implic_R</name>
+      <committed/>
+    </location>
+    <location id="runnable2_runnable2active">
+      <name>active</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <init ref="runnable2_runnable2passive"/>
+    <transition>
+      <source ref="runnable2_runnable2passive"/>
+      <target ref="runnable2_runnable2implic_R"/>
+      <label kind="synchronisation">runnable2_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2implic_R"/>
+      <target ref="runnable2_runnable2implic_R"/>
+      <label kind="synchronisation">read1!</label>
+      <label kind="guard">read1_count&lt;1</label>
+      <label kind="assignment">read1_count++</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2implic_R"/>
+      <target ref="runnable2_runnable2active"/>
+      <label kind="guard">read1_count&gt;=1</label>
+      <label kind="assignment">read1_count=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2active"/>
+      <target ref="runnable2_runnable2active"/>
+      <label kind="synchronisation">write1!</label>
+      <label kind="guard">write1_count&lt;=1</label>
+      <label kind="assignment">write1_count++</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2active"/>
+      <target ref="runnable2_runnable2passive"/>
+      <label kind="guard">write1_count&gt;=1</label>
+      <label kind="assignment">write1_count=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>runnable3</name>
+    <declaration>clock x;
+</declaration>    <location id="runnable3_runnable3s1">      <name>s1</name>
+    </location>
+    <location id="runnable3_runnable3s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable3_runnable3s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=4&amp;&amp;x&gt;=2</label>
+    </location>
+    <init ref="runnable3_runnable3s1"/>
+    <transition>
+      <source ref="runnable3_runnable3s1"/>
+      <target ref="runnable3_runnable3s2"/>
+      <label kind="synchronisation">runnable3_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s2"/>
+      <target ref="runnable3_runnable3s3"/>
+      <label kind="synchronisation">read1!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s3"/>
+      <target ref="runnable3_runnable3s1"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+  </template>
+  <template>
+    <name>buffer1</name>
+    <declaration>int count;
+int len=1000;
+</declaration>    <location id="buffer1_buffer1initial">      <name>initial</name>
+    </location>
+    <init ref="buffer1_buffer1initial"/>
+    <transition>
+      <source ref="buffer1_buffer1initial"/>
+      <target ref="buffer1_buffer1initial"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">count&gt;=0</label>
+      <label kind="assignment">count--</label>
+    </transition>
+    <transition>
+      <source ref="buffer1_buffer1initial"/>
+      <target ref="buffer1_buffer1initial"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">count&lt; len</label>
+      <label kind="assignment">count++</label>
+    </transition>
+    <transition>
+      <source ref="buffer1_buffer1initial"/>
+      <target ref="buffer1_buffer1initial"/>
+      <label kind="guard">count &gt;= len</label>
+      <label kind="assignment">count = count/2</label>
+    </transition>
+  </template>
+  <template>
+    <name>rte</name>
+    <declaration>clock x;
+</declaration>    <location id="rte_rtes1">      <name>s1</name>
+    </location>
+    <location id="rte_rtes2">
+      <name>s2</name>
+    </location>
+    <location id="rte_rtes3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="rte_rtes4">
+      <name>s4</name>
+    </location>
+    <init ref="rte_rtes1"/>
+    <transition>
+      <source ref="rte_rtes1"/>
+      <target ref="rte_rtes2"/>
+      <label kind="synchronisation">trigger0?</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes2"/>
+      <target ref="rte_rtes2"/>
+      <label kind="synchronisation">trigger0?</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes2"/>
+      <target ref="rte_rtes3"/>
+      <label kind="synchronisation">trigger1?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes3"/>
+      <target ref="rte_rtes1"/>
+      <label kind="synchronisation">runnable3_start!</label>
+      <label kind="guard">x&lt;=10</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes1"/>
+      <target ref="rte_rtes4"/>
+      <label kind="synchronisation">trigger1?</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes4"/>
+      <target ref="rte_rtes4"/>
+      <label kind="synchronisation">trigger1?</label>
+    </transition>
+    <transition>
+      <source ref="rte_rtes4"/>
+      <target ref="rte_rtes3"/>
+      <label kind="synchronisation">trigger0?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>schedule</name>
+    <declaration>clock x;
+</declaration>    <location id="schedule_schedules1">      <name>s1</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule_schedules2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule_schedules3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=20</label>
+    </location>
+    <location id="schedule_schedules4">
+      <name>s4</name>
+      <label kind="invariant">x&lt;=20</label>
+    </location>
+    <init ref="schedule_schedules1"/>
+    <transition>
+      <source ref="schedule_schedules1"/>
+      <target ref="schedule_schedules2"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x&lt;=10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule_schedules2"/>
+      <target ref="schedule_schedules3"/>
+      <label kind="synchronisation">trigger0!</label>
+      <label kind="guard">x&lt;=10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule_schedules3"/>
+      <target ref="schedule_schedules4"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x&lt;=20</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule_schedules4"/>
+      <target ref="schedule_schedules1"/>
+      <label kind="synchronisation">trigger0!</label>
+      <label kind="guard">x&lt;=20</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+  </template>
+  <system>system runnable1,runnable2,runnable3,buffer1,rte,schedule;</system>
+</nta>

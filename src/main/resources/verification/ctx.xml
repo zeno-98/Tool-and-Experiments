@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd">
+
+<nta>
+  <declaration>chan read1,write1;
+chan read2,write2;
+chan runnable1_start;
+chan runnable2_start;
+chan runnable3_start;
+chan runnable4_start;
+</declaration>  <template>    <name>schedule1</name>
+    <declaration>clock x;
+</declaration>    <location id="schedule1_schedule1s1">      <name>s1</name>
+      <label kind="invariant">x&lt;=1</label>
+    </location>
+    <location id="schedule1_schedule1s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule1_schedule1s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule1_schedule1s4">
+      <name>s4</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <init ref="schedule1_schedule1s1"/>
+    <transition>
+      <source ref="schedule1_schedule1s1"/>
+      <target ref="schedule1_schedule1s2"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==1</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s2"/>
+      <target ref="schedule1_schedule1s3"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==2</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s3"/>
+      <target ref="schedule1_schedule1s4"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==3</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s2"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s3"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s4"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>trace</name>
+    <declaration>clock  x;
+</declaration>    <location id="trace_trace1">      <name>trace1</name>
+    </location>
+    <location id="trace_trace2">
+      <name>trace2</name>
+    </location>
+    <init ref="trace_trace1"/>
+    <transition>
+      <source ref="trace_trace1"/>
+      <target ref="trace_trace2"/>
+      <label kind="synchronisation">runnable2_start?</label>
+      <label kind="guard">x &gt;=10 &amp;&amp; x&lt;=10</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+  </template>
+  <system>system schedule1,trace;</system>
+</nta>

@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd">
+
+<nta>
+  <declaration>chan read1,write1;
+chan read2,write2;
+chan runnable1_start;
+chan runnable2_start;
+chan runnable3_start;
+chan runnable4_start;
+chan write1_complete;
+chan read1_complete;
+</declaration>  <template>    <name>runnable1</name>
+    <declaration>clock x;
+</declaration>    <location id="runnable1_runnable1s1">      <name>s1</name>
+    </location>
+    <location id="runnable1_runnable1s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1s4">
+      <name>s4</name>
+      <label kind="invariant">x&gt;=2&amp;&amp;x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1s5">
+      <name>s5</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1s6">
+      <name>s6</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable1_runnable1s7">
+      <name>s7</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <init ref="runnable1_runnable1s1"/>
+    <transition>
+      <source ref="runnable1_runnable1s1"/>
+      <target ref="runnable1_runnable1s2"/>
+      <label kind="synchronisation">runnable1_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s2"/>
+      <target ref="runnable1_runnable1s6"/>
+      <label kind="synchronisation">write1!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s2"/>
+      <target ref="runnable1_runnable1s5"/>
+      <label kind="synchronisation">write1!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s3"/>
+      <target ref="runnable1_runnable1s7"/>
+      <label kind="synchronisation">write1!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s7"/>
+      <target ref="runnable1_runnable1s4"/>
+      <label kind="synchronisation">write1_complete?</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s4"/>
+      <target ref="runnable1_runnable1s1"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s6"/>
+      <target ref="runnable1_runnable1s4"/>
+      <label kind="synchronisation">write1_complete?</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable1_runnable1s5"/>
+      <target ref="runnable1_runnable1s3"/>
+      <label kind="synchronisation">write1_complete?</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+  </template>
+  <template>
+    <name>runnable2</name>
+    <declaration>clock x;
+</declaration>    <location id="runnable2_runnable2s1">      <name>s1</name>
+    </location>
+    <location id="runnable2_runnable2s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable2_runnable2s3">
+      <name>s3</name>
+      <label kind="invariant">x&gt;=2&amp;&amp;x&lt;=4</label>
+    </location>
+    <location id="runnable2_runnable2s4">
+      <name>s4</name>
+      <label kind="invariant">x&gt;=2&amp;&amp;x&lt;=4</label>
+    </location>
+    <init ref="runnable2_runnable2s1"/>
+    <transition>
+      <source ref="runnable2_runnable2s1"/>
+      <target ref="runnable2_runnable2s2"/>
+      <label kind="synchronisation">runnable2_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2s2"/>
+      <target ref="runnable2_runnable2s4"/>
+      <label kind="synchronisation">read1!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2s3"/>
+      <target ref="runnable2_runnable2s1"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+    <transition>
+      <source ref="runnable2_runnable2s4"/>
+      <target ref="runnable2_runnable2s3"/>
+      <label kind="synchronisation">read1_complete?</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+  </template>
+  <template>
+    <name>runnable3</name>
+    <declaration>clock x;
+</declaration>    <location id="runnable3_runnable3s1">      <name>s1</name>
+    </location>
+    <location id="runnable3_runnable3s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable3_runnable3s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable3_runnable3s4">
+      <name>s4</name>
+      <label kind="invariant">x&gt;=2&amp;&amp;x&lt;=4</label>
+    </location>
+    <init ref="runnable3_runnable3s1"/>
+    <transition>
+      <source ref="runnable3_runnable3s1"/>
+      <target ref="runnable3_runnable3s2"/>
+      <label kind="synchronisation">runnable3_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s2"/>
+      <target ref="runnable3_runnable3s4"/>
+      <label kind="synchronisation">write2!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s2"/>
+      <target ref="runnable3_runnable3s3"/>
+      <label kind="synchronisation">write2!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s3"/>
+      <target ref="runnable3_runnable3s4"/>
+      <label kind="synchronisation">write2!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable3_runnable3s4"/>
+      <target ref="runnable3_runnable3s1"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+  </template>
+  <template>
+    <name>runnable4</name>
+    <declaration>clock x;
+</declaration>    <location id="runnable4_runnable4s1">      <name>s1</name>
+    </location>
+    <location id="runnable4_runnable4s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=4</label>
+    </location>
+    <location id="runnable4_runnable4s3">
+      <name>s3</name>
+      <label kind="invariant">x&gt;=2&amp;&amp;x&lt;=4</label>
+    </location>
+    <init ref="runnable4_runnable4s1"/>
+    <transition>
+      <source ref="runnable4_runnable4s1"/>
+      <target ref="runnable4_runnable4s2"/>
+      <label kind="synchronisation">runnable4_start?</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="runnable4_runnable4s2"/>
+      <target ref="runnable4_runnable4s3"/>
+      <label kind="synchronisation">read2!</label>
+      <label kind="guard">x&lt;=4</label>
+    </transition>
+    <transition>
+      <source ref="runnable4_runnable4s3"/>
+      <target ref="runnable4_runnable4s1"/>
+      <label kind="guard">x&gt;=2</label>
+    </transition>
+  </template>
+  <template>
+    <name>buffer2</name>
+    <declaration>int count;
+int len=30;
+</declaration>    <location id="buffer2_buffer2s1">      <name>s1</name>
+    </location>
+    <location id="buffer2_buffer2error">
+      <name>error</name>
+    </location>
+    <init ref="buffer2_buffer2s1"/>
+    <transition>
+      <source ref="buffer2_buffer2s1"/>
+      <target ref="buffer2_buffer2s1"/>
+      <label kind="synchronisation">write2?</label>
+      <label kind="guard">count&lt;len</label>
+      <label kind="assignment">count++</label>
+    </transition>
+    <transition>
+      <source ref="buffer2_buffer2s1"/>
+      <target ref="buffer2_buffer2s1"/>
+      <label kind="synchronisation">read2?</label>
+      <label kind="guard">count&gt;=0</label>
+      <label kind="assignment">count--</label>
+    </transition>
+    <transition>
+      <source ref="buffer2_buffer2s1"/>
+      <target ref="buffer2_buffer2s1"/>
+      <label kind="guard">count &gt; len</label>
+      <label kind="assignment">count=len/2</label>
+    </transition>
+    <transition>
+      <source ref="buffer2_buffer2s1"/>
+      <target ref="buffer2_buffer2error"/>
+      <label kind="guard">count &lt; 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>schedule2</name>
+    <declaration>clock x;
+</declaration>    <location id="schedule2_schedule2s1">      <name>s1</name>
+    </location>
+    <location id="schedule2_schedule2s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=20</label>
+    </location>
+    <location id="schedule2_schedule2s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=20</label>
+    </location>
+    <location id="schedule2_schedule2s4">
+      <name>s4</name>
+      <label kind="invariant">x&lt;=20</label>
+    </location>
+    <init ref="schedule2_schedule2s1"/>
+    <transition>
+      <source ref="schedule2_schedule2s1"/>
+      <target ref="schedule2_schedule2s2"/>
+      <label kind="synchronisation">runnable3_start!</label>
+      <label kind="guard">x==5</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule2_schedule2s2"/>
+      <target ref="schedule2_schedule2s3"/>
+      <label kind="synchronisation">runnable3_start!</label>
+      <label kind="guard">x==6</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule2_schedule2s3"/>
+      <target ref="schedule2_schedule2s4"/>
+      <label kind="synchronisation">runnable3_start!</label>
+      <label kind="guard">x==8</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule2_schedule2s2"/>
+      <target ref="schedule2_schedule2s1"/>
+      <label kind="synchronisation">runnable4_start!</label>
+      <label kind="guard">x==20</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule2_schedule2s3"/>
+      <target ref="schedule2_schedule2s1"/>
+      <label kind="synchronisation">runnable4_start!</label>
+      <label kind="guard">x==20</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule2_schedule2s4"/>
+      <target ref="schedule2_schedule2s1"/>
+      <label kind="synchronisation">runnable4_start!</label>
+      <label kind="guard">x==20</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>schedule1</name>
+    <declaration>clock x;
+</declaration>    <location id="schedule1_schedule1s1">      <name>s1</name>
+      <label kind="invariant">x&lt;=1</label>
+    </location>
+    <location id="schedule1_schedule1s2">
+      <name>s2</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule1_schedule1s3">
+      <name>s3</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <location id="schedule1_schedule1s4">
+      <name>s4</name>
+      <label kind="invariant">x&lt;=10</label>
+    </location>
+    <init ref="schedule1_schedule1s1"/>
+    <transition>
+      <source ref="schedule1_schedule1s1"/>
+      <target ref="schedule1_schedule1s2"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==1</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s2"/>
+      <target ref="schedule1_schedule1s3"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==2</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s3"/>
+      <target ref="schedule1_schedule1s4"/>
+      <label kind="synchronisation">runnable1_start!</label>
+      <label kind="guard">x==3</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s2"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s3"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+    <transition>
+      <source ref="schedule1_schedule1s4"/>
+      <target ref="schedule1_schedule1s1"/>
+      <label kind="synchronisation">runnable2_start!</label>
+      <label kind="guard">x==10</label>
+      <label kind="assignment">x=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>assume</name>
+    <declaration>clock  x;
+</declaration>    <location id="assume_assume99999">      <name>assumesink</name>
+    </location>
+    <location id="assume_assume3">
+      <name>assume3</name>
+    </location>
+    <location id="assume_assume2">
+      <name>assume2</name>
+    </location>
+    <location id="assume_assume0">
+      <name>assume0</name>
+    </location>
+    <init ref="assume_assume2"/>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;14</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1_complete!</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;14</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume0"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume0"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1_complete!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;13</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">read1_complete!</label>
+      <label kind="guard">x &gt;=13</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;1</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=1</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;1</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume3"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=1 &amp;&amp; x&lt;14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume2"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;12</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=12</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1_complete!</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;1</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume2"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=1 &amp;&amp; x&lt;12</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume3"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=12</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;12</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume3"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=12 &amp;&amp; x&lt;14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume3"/>
+      <target ref="assume_assume0"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=14</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume99999"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1?</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume99999"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">read1_complete!</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume99999"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1?</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume_assume99999"/>
+      <target ref="assume_assume99999"/>
+      <label kind="synchronisation">write1_complete!</label>
+      <label kind="guard">x &gt;=0</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+  </template>
+  <system>system runnable1,runnable2,runnable3,runnable4,buffer2,schedule2,schedule1,assume;</system>
+</nta>

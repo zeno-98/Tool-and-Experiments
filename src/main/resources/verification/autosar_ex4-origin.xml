@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>chan read1,write1;
+chan read2,write2;
+chan read3,write3;
+chan runnable1_start,runnable1_finish;
+chan runnable2_start,runnable2_finish;
+chan runnable3_start,runnable3_finish;
+chan runnable4_start,runnable4_finish;
+chan runnable5_start,runnable5_finish;
+chan runnable6_start,runnable6_finish;
+chan runnable7_start,runnable7_finish;
+chan task1_start,task1_finish;
+chan task2_start,task2_finish;
+chan task3_start,task3_finish;
+</declaration>
+	<template>
+		<name>runnable1</name>
+		<location id="id0" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id1" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id2" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id3" x="40" y="230">
+			<name x="30" y="200">active1</name>
+		</location>
+		<location id="id4" x="42" y="161">
+			<name x="32" y="131">implicW</name>
+			<committed/>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="59" y="85">runnable1_start?</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="102" y="204">write2!</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-17" y="187">write1!</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-76" y="110">runnable1_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable2</name>
+		<location id="id5" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id6" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id7" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id8" x="40" y="230">
+			<name x="30" y="200">active1</name>
+		</location>
+		<location id="id9" x="34" y="161">
+			<name x="24" y="131">implicW</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="55" y="65">runnable2_start?</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="204" y="144">read1!</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="85" y="229">write2!</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-85" y="102">runnable2_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable3</name>
+		<location id="id10" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id11" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id12" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id13" x="40" y="230">
+			<name x="30" y="200">active1</name>
+		</location>
+		<location id="id14" x="42" y="161">
+			<name x="32" y="131">implicW</name>
+			<committed/>
+		</location>
+		<init ref="id10"/>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="68" y="59">runnable3_start?</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="93" y="204">read3!</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-17" y="178">read2!</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-76" y="110">runnable3_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable4</name>
+		<location id="id15" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id16" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id17" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id18" x="40" y="230">
+			<name x="30" y="200">active1</name>
+		</location>
+		<location id="id19" x="42" y="153">
+			<name x="32" y="123">implicW</name>
+			<committed/>
+		</location>
+		<init ref="id15"/>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="55" y="65">runnable4_start?</label>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id18"/>
+			<label kind="synchronisation" x="93" y="238">write3!</label>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-17" y="178">write2!</label>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-93" y="102">runnable4_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable5</name>
+		<location id="id20" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id21" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id22" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id23" x="40" y="230">
+			<name x="30" y="200">implicW</name>
+			<committed/>
+		</location>
+		<init ref="id20"/>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="55" y="65">runnable5_start?</label>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="130" y="140">write3!</label>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-20" y="140">runnable5_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable6</name>
+		<location id="id24" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id25" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id26" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id27" x="40" y="230">
+			<name x="30" y="200">implicW</name>
+			<committed/>
+		</location>
+		<init ref="id24"/>
+		<transition>
+			<source ref="id24"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="55" y="65">runnable6_start?</label>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id26"/>
+		</transition>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id27"/>
+			<label kind="synchronisation" x="55" y="215">write3!</label>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="-20" y="140">runnable6_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>runnable7</name>
+		<location id="id28" x="40" y="80">
+			<name x="30" y="50">passive</name>
+		</location>
+		<location id="id29" x="190" y="80">
+			<name x="180" y="50">implicR</name>
+			<committed/>
+		</location>
+		<location id="id30" x="190" y="230">
+			<name x="180" y="200">active</name>
+		</location>
+		<location id="id31" x="40" y="230">
+			<name x="30" y="200">implicW</name>
+			<committed/>
+		</location>
+		<location id="id32" x="42" y="153">
+			<name x="32" y="123">implicW1</name>
+			<committed/>
+		</location>
+		<init ref="id28"/>
+		<transition>
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="synchronisation" x="59" y="59">runnable7_start?</label>
+		</transition>
+		<transition>
+			<source ref="id29"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="221" y="144">read3!</label>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id31"/>
+		</transition>
+		<transition>
+			<source ref="id31"/>
+			<target ref="id32"/>
+			<label kind="synchronisation" x="-17" y="170">read3!</label>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id28"/>
+			<label kind="synchronisation" x="-93" y="102">runnable7_finish!</label>
+		</transition>
+	</template>
+	<template>
+		<name>buffer1</name>
+		<declaration>int count;
+int len=3;
+</declaration>
+		<location id="id33" x="40" y="80">
+			<name x="30" y="50">initial</name>
+		</location>
+		<location id="id34" x="190" y="80">
+			<name x="180" y="50">error</name>
+		</location>
+		<init ref="id33"/>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id33"/>
+			<label kind="guard" x="-234" y="-102">len &gt;= 0</label>
+			<label kind="synchronisation" x="-234" y="-87">read1?</label>
+			<label kind="assignment" x="-234" y="-72">count = count-1</label>
+			<nail x="-204" y="-102"/>
+			<nail x="-146" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id33"/>
+			<label kind="guard" x="-30" y="178">count &lt;= len</label>
+			<label kind="synchronisation" x="-30" y="193">write1?</label>
+			<label kind="assignment" x="-30" y="208">count = count+1</label>
+			<nail x="0" y="178"/>
+			<nail x="60" y="178"/>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="guard" x="85" y="8">count&gt;len</label>
+			<nail x="110" y="25"/>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="guard" x="85" y="85">count&lt;0</label>
+		</transition>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id34"/>
+			<nail x="195" y="144"/>
+			<nail x="255" y="144"/>
+		</transition>
+	</template>
+	<template>
+		<name>buffer2</name>
+		<declaration>int count;
+int len=300;
+</declaration>
+		<location id="id35" x="40" y="80">
+			<name x="30" y="50">initial</name>
+		</location>
+		<location id="id36" x="190" y="80">
+			<name x="180" y="50">error</name>
+		</location>
+		<init ref="id35"/>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-20" y="50">len &gt;= 0</label>
+			<label kind="synchronisation" x="-20" y="65">read2?</label>
+			<label kind="assignment" x="-20" y="80">count = count-1</label>
+			<nail x="10" y="50"/>
+			<nail x="70" y="50"/>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id35"/>
+			<label kind="guard" x="-20" y="50">count &lt;= len</label>
+			<label kind="synchronisation" x="-20" y="65">write2?</label>
+			<label kind="assignment" x="-20" y="80">count = count+1</label>
+			<nail x="10" y="50"/>
+			<nail x="70" y="50"/>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="guard" x="55" y="50">count&gt;len</label>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="guard" x="55" y="50">count&lt;0</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id36"/>
+			<nail x="160" y="50"/>
+			<nail x="220" y="50"/>
+		</transition>
+	</template>
+	<template>
+		<name>buffer3</name>
+		<declaration>int count;
+int len=3;
+</declaration>
+		<location id="id37" x="40" y="80">
+			<name x="30" y="50">initial</name>
+		</location>
+		<location id="id38" x="190" y="80">
+			<name x="180" y="50">error</name>
+		</location>
+		<init ref="id37"/>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id37"/>
+			<label kind="guard" x="-20" y="50">len &gt;= 0</label>
+			<label kind="synchronisation" x="-20" y="65">read3?</label>
+			<label kind="assignment" x="-20" y="80">count = count-1</label>
+			<nail x="10" y="50"/>
+			<nail x="70" y="50"/>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id37"/>
+			<label kind="guard" x="-20" y="50">count &lt;= len</label>
+			<label kind="synchronisation" x="-20" y="65">write3?</label>
+			<label kind="assignment" x="-20" y="80">count = count+1</label>
+			<nail x="10" y="50"/>
+			<nail x="70" y="50"/>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id38"/>
+			<label kind="guard" x="55" y="50">count&gt;len</label>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id38"/>
+			<label kind="guard" x="55" y="50">count&lt;0</label>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id38"/>
+			<nail x="160" y="50"/>
+			<nail x="220" y="50"/>
+		</transition>
+	</template>
+	<template>
+		<name>task1</name>
+		<location id="id39" x="40" y="80">
+			<name x="30" y="50">s1</name>
+		</location>
+		<location id="id40" x="190" y="80">
+			<name x="180" y="50">s2</name>
+		</location>
+		<location id="id41" x="190" y="230">
+			<name x="180" y="200">s3</name>
+		</location>
+		<location id="id42" x="40" y="230">
+			<name x="30" y="200">s4</name>
+		</location>
+		<location id="id43" x="340" y="80">
+			<name x="330" y="50">s5</name>
+		</location>
+		<location id="id44" x="340" y="230">
+			<name x="330" y="200">s6</name>
+		</location>
+		<init ref="id39"/>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="55" y="65">task1_start?</label>
+		</transition>
+		<transition>
+			<source ref="id40"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="130" y="140">runnable1_start!</label>
+		</transition>
+		<transition>
+			<source ref="id41"/>
+			<target ref="id42"/>
+			<label kind="synchronisation" x="55" y="215">runnable1_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id43"/>
+			<label kind="synchronisation" x="130" y="140">runnable2_start!</label>
+		</transition>
+		<transition>
+			<source ref="id43"/>
+			<target ref="id44"/>
+			<label kind="synchronisation" x="280" y="140">runnable2_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id44"/>
+			<target ref="id39"/>
+		</transition>
+	</template>
+	<template>
+		<name>task2</name>
+		<location id="id45" x="40" y="80">
+			<name x="30" y="50">s1</name>
+		</location>
+		<location id="id46" x="190" y="80">
+			<name x="180" y="50">s2</name>
+		</location>
+		<location id="id47" x="190" y="230">
+			<name x="180" y="200">s3</name>
+		</location>
+		<location id="id48" x="40" y="230">
+			<name x="30" y="200">s4</name>
+		</location>
+		<location id="id49" x="340" y="80">
+			<name x="330" y="50">s5</name>
+		</location>
+		<location id="id50" x="340" y="230">
+			<name x="330" y="200">s6</name>
+		</location>
+		<init ref="id45"/>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id46"/>
+			<label kind="synchronisation" x="55" y="65">task2_start?</label>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id47"/>
+			<label kind="synchronisation" x="130" y="140">runnable4_start!</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id48"/>
+			<label kind="synchronisation" x="55" y="215">runnable4_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id48"/>
+			<target ref="id49"/>
+			<label kind="synchronisation" x="130" y="140">runnable3_start!</label>
+		</transition>
+		<transition>
+			<source ref="id49"/>
+			<target ref="id50"/>
+			<label kind="synchronisation" x="280" y="140">runnable3_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id50"/>
+			<target ref="id45"/>
+		</transition>
+	</template>
+	<template>
+		<name>task3</name>
+		<location id="id51" x="40" y="80">
+			<name x="30" y="50">s1</name>
+		</location>
+		<location id="id52" x="190" y="80">
+			<name x="180" y="50">s2</name>
+		</location>
+		<location id="id53" x="190" y="230">
+			<name x="180" y="200">s3</name>
+		</location>
+		<location id="id54" x="40" y="230">
+			<name x="30" y="200">s4</name>
+		</location>
+		<location id="id55" x="340" y="80">
+			<name x="330" y="50">s5</name>
+		</location>
+		<location id="id56" x="340" y="230">
+			<name x="330" y="200">s6</name>
+		</location>
+		<location id="id57" x="340" y="380">
+			<name x="330" y="350">s7</name>
+		</location>
+		<init ref="id51"/>
+		<transition>
+			<source ref="id51"/>
+			<target ref="id52"/>
+			<label kind="synchronisation" x="55" y="65">task3_start?</label>
+		</transition>
+		<transition>
+			<source ref="id52"/>
+			<target ref="id53"/>
+			<label kind="synchronisation" x="130" y="140">runnable6_start!</label>
+		</transition>
+		<transition>
+			<source ref="id53"/>
+			<target ref="id54"/>
+			<label kind="synchronisation" x="55" y="215">runnable6_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id54"/>
+			<target ref="id55"/>
+			<label kind="synchronisation" x="130" y="140">runnable5_start!</label>
+		</transition>
+		<transition>
+			<source ref="id55"/>
+			<target ref="id56"/>
+			<label kind="synchronisation" x="280" y="140">runnable5_finish?</label>
+		</transition>
+		<transition>
+			<source ref="id56"/>
+			<target ref="id57"/>
+			<label kind="synchronisation" x="280" y="290">runnable7_start!</label>
+		</transition>
+		<transition>
+			<source ref="id57"/>
+			<target ref="id51"/>
+			<label kind="synchronisation" x="130" y="215">runnable7_finish?</label>
+		</transition>
+	</template>
+	<template>
+		<name>schedule</name>
+		<declaration>clock x;
+</declaration>
+		<location id="id58" x="40" y="80">
+			<name x="30" y="50">s1</name>
+			<label kind="invariant" x="30" y="95">x&lt;=20</label>
+		</location>
+		<location id="id59" x="190" y="80">
+			<name x="180" y="50">s2</name>
+			<label kind="invariant" x="180" y="95">x&lt;=30</label>
+		</location>
+		<location id="id60" x="190" y="230">
+			<name x="180" y="200">s3</name>
+			<label kind="invariant" x="180" y="245">x&lt;=40</label>
+		</location>
+		<location id="id61" x="40" y="230">
+			<name x="30" y="200">s4</name>
+			<label kind="invariant" x="30" y="245">x&lt;=60</label>
+		</location>
+		<location id="id62" x="340" y="80">
+			<name x="330" y="50">s5</name>
+			<label kind="invariant" x="330" y="95">x&lt;=60</label>
+		</location>
+		<init ref="id58"/>
+		<transition>
+			<source ref="id58"/>
+			<target ref="id59"/>
+			<label kind="guard" x="55" y="50">x==20</label>
+			<label kind="synchronisation" x="55" y="65">task1_start!</label>
+		</transition>
+		<transition>
+			<source ref="id59"/>
+			<target ref="id60"/>
+			<label kind="guard" x="130" y="125">x==30</label>
+			<label kind="synchronisation" x="130" y="140">task2_start!</label>
+		</transition>
+		<transition>
+			<source ref="id60"/>
+			<target ref="id61"/>
+			<label kind="guard" x="55" y="200">x==40</label>
+			<label kind="synchronisation" x="55" y="215">task1_start!</label>
+		</transition>
+		<transition>
+			<source ref="id61"/>
+			<target ref="id62"/>
+			<label kind="guard" x="130" y="125">x==60</label>
+			<label kind="synchronisation" x="130" y="140">task2_start!</label>
+		</transition>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id58"/>
+			<label kind="guard" x="130" y="50">x==60</label>
+			<label kind="synchronisation" x="130" y="65">task3_start!</label>
+			<label kind="assignment" x="130" y="80">x=0</label>
+		</transition>
+	</template>
+	<system>system runnable3,runnable4,runnable5,runnable6,runnable7,buffer1,buffer2,buffer3,task2,task3,runnable1,runnable2,task1,schedule;</system>
+	<queries>
+		<query>
+			<formula>A[] buffer1.count &lt;= buffer1.len</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

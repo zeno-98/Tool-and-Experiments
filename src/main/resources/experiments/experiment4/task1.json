@@ -1,0 +1,14 @@
+{
+  "name": "task1",
+  "l": ["1","2","3","4","5"],
+  "sigma": ["task1_start", "runnable1_start","runnable1_finish","runnable2_start","runnable2_finish"],
+  "tran": {
+    "0": ["1", "task1_start","2"],
+    "1": ["2", "runnable1_start", "3"],
+    "2": ["3", "runnable1_finish", "4"],
+    "3": ["4", "runnable2_start", "5"],
+    "4": ["5", "runnable2_finish", "1"]
+  },
+  "init": "1",
+  "accept": ["1","2","3","4","5"]
+}

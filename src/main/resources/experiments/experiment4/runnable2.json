@@ -1,0 +1,13 @@
+{
+  "name": "runnable2",
+  "l": ["1","2","3","4"],
+  "sigma": ["runnable2_start", "read1","write2","runnable2_finish"],
+  "tran": {
+    "0": ["1", "runnable2_start","2"],
+    "1": ["2", "read1", "3"],
+    "2": ["3", "write2", "4"],
+    "3": ["4", "runnable2_finish", "1"]
+  },
+  "init": "1",
+  "accept": ["1","2","3","4"]
+}
