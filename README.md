@@ -11,12 +11,12 @@ the models of AUTOSAR-1 are available in  [autosar-1](https://github.com/suuuyu/
 
 the property and partitions for `M_1` and `M_2` are shown below:
 
-| ID   | properties                        | descriptions            | `M_1`            | `M_2`                                                        |
+| Case ID   | properties                        | descriptions            | `M_1`            | `M_2`                                                        |
 | ---- | --------------------------------- | ----------------------- | ---------------- | ------------------------------------------------------------ |
-| 1    | A[ ] buffer1.count >= 0           | buffer1 never underflow | buffer1          | runnable1,runnable2,runnable3,runnable4,buffer2,schedule1,schedule2 |
-| 2    | A[ ] buffer1.count <= buffer1.len | buffer1 never overflow  | *same as line 1* | *same as line 1*                                             |
-| 3    | A[ ] buffer2.count >= 0           | buffer2 never overflow  | buffer2          | runnable1,runnable2,runnable3,runnable4,buffer2,schedule1,schedule2 |
-| 4    | A[ ] buffer2.count <= buffer2.len | buffer2 never underflow | *same as line 3* | *same as line 3*                                             |
+| 1-71424-7-8    | A[ ] buffer1.count >= 0           | buffer1 never underflow | buffer1          | runnable1,runnable2,runnable3,runnable4,buffer2,schedule1,schedule2 |
+| 2-71424-7-8    | A[ ] buffer1.count <= buffer1.len | buffer1 never overflow  | *same as line 1* | *same as line 1*                                             |
+| 3-71424-7-8    | A[ ] buffer2.count >= 0           | buffer2 never overflow  | buffer2          | runnable1,runnable2,runnable3,runnable4,buffer2,schedule1,schedule2 |
+| 4-71424-7-8    | A[ ] buffer2.count <= buffer2.len | buffer2 never underflow | *same as line 3* | *same as line 3*                                             |
 
 ### Verification for AUTOSAR-1 where `M_1` is a composition of DOTAs.
 
